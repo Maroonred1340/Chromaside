@@ -1,5 +1,3 @@
-Python 3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)] on win32
-Enter "help" below or click "Help" above for more information.
 ```python
 import pygame
 
@@ -54,53 +52,54 @@ class Player(pygame.sprite.Sprite):
 
     def move_in_direction(self, target_pos):
         # 클릭 위치를 기준으로 방향 설정
-...         dx = target_pos[0] - self.rect.centerx
-...         dy = target_pos[1] - self.rect.centery
-...         self.direction = pygame.math.Vector2(dx, dy)
-... 
-... # Pygame 초기화
-... pygame.init()
-... screen = pygame.display.set_mode((WIDTH, HEIGHT))
-... pygame.display.set_caption("화살표 게임")
-... clock = pygame.time.Clock()
-... 
-... # 플레이어 생성
-... player = Player()
-... all_sprites = pygame.sprite.Group()
-... all_sprites.add(player)
-... 
-... # 게임 루프
-... running = True
-... while running:
-...     # 이벤트 처리
-...     for event in pygame.event.get():
-...         if event.type == pygame.QUIT:
-...             running = False
-...         elif event.type == pygame.MOUSEBUTTONDOWN:
-...             if event.button == 1: # 왼쪽 클릭
-...                 player.move_in_direction(event.pos)
-... 
-...     # 업데이트
-...     all_sprites.update()
-... 
-...     # 그리기
-...     screen.fill(WHITE) # 기본 배경색
-...     # 파랑-하늘색 그라데이션 배경
-...     for y in range(HEIGHT):
-...         ratio = y / HEIGHT
-...         color = [
-...             BLUE_SKY[0] * (1 - ratio) + DARK_BLUE[0] * ratio,
-...             BLUE_SKY[1] * (1 - ratio) + DARK_BLUE[1] * ratio,
-...             BLUE_SKY[2] * (1 - ratio) + DARK_BLUE[2] * ratio
-...         ]
-...         pygame.draw.line(screen, color, (0, y), (WIDTH, y), 1)
-... 
-...     all_sprites.draw(screen)
-... 
-...     # 화면 업데이트
-...     pygame.display.flip()
-... 
-...     # FPS 설정
-...     clock.tick(FPS)
-... 
-... pygame.quit()
+        dx = target_pos[0] - self.rect.centerx
+        dy = target_pos[1] - self.rect.centery
+        self.direction = pygame.math.Vector2(dx, dy)
+
+# Pygame 초기화
+pygame.init()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("화살표 게임")
+clock = pygame.time.Clock()
+
+# 플레이어 생성
+player = Player()
+all_sprites = pygame.sprite.Group()
+all_sprites.add(player)
+
+# 게임 루프
+running = True
+while running:
+    # 이벤트 처리
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1: # 왼쪽 클릭
+                player.move_in_direction(event.pos)
+
+    # 업데이트
+    all_sprites.update()
+
+    # 그리기
+    screen.fill(WHITE) # 기본 배경색
+    # 파랑-하늘색 그라데이션 배경
+    for y in range(HEIGHT):
+        ratio = y / HEIGHT
+        color = [
+            BLUE_SKY[0] * (1 - ratio) + DARK_BLUE[0] * ratio,
+            BLUE_SKY[1] * (1 - ratio) + DARK_BLUE[1] * ratio,
+            BLUE_SKY[2] * (1 - ratio) + DARK_BLUE[2] * ratio
+        ]
+        pygame.draw.line(screen, color, (0, y), (WIDTH, y), 1)
+
+    all_sprites.draw(screen)
+
+    # 화면 업데이트
+    pygame.display.flip()
+
+    # FPS 설정
+    clock.tick(FPS)
+
+pygame.quit()
+```
